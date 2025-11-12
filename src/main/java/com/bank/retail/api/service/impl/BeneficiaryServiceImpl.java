@@ -193,8 +193,10 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
                 .isFavorite(beneficiary.getIsFavorite())
                 .isContactBased(beneficiary.getIsContactBased())
                 .transferTypeTag(beneficiary.getTransferTypeTag())
-                .lastTransactionDate(beneficiary.getLastTransactionDate())
                 .avatarImageUrl(beneficiary.getAvatarImageUrl())
+                .createdDate(beneficiary.getCreatedDate())
+                .updatedDate(beneficiary.getUpdatedDate())
+                .status(beneficiary.getStatus())
                 .build();
     }
     

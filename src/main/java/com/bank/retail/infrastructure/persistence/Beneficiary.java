@@ -78,8 +78,14 @@ public class Beneficiary {
     @Column(name = "transfer_type_tag")
     private String transferTypeTag;
 
-    @Column(name = "last_transaction_date")
-    private LocalDateTime lastTransactionDate;
+    @Column(name = "created_date", updatable = false)
+    private LocalDateTime createdDate;
+
+    @Column(name = "updated_date")
+    private LocalDateTime updatedDate;
+
+    @Column(name = "status")
+    private String status;
 
     @Column(name = "deleted")
     private Boolean deleted;

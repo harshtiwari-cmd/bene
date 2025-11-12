@@ -1,5 +1,6 @@
 package com.bank.retail.domain.model.dto;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +24,9 @@ public class BeneficiaryDto {
     private Boolean isFavorite;
     private Boolean isContactBased;
     private String transferTypeTag;
-    private LocalDateTime lastTransactionDate;
     private String avatarImageUrl;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
+    private String status;
 }
 
