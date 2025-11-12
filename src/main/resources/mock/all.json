@@ -1,0 +1,107 @@
+{
+  "categories": [
+    {
+      "category": "Within Own Account",
+      "categoryDisplayName": "Within Own Account",
+      "beneficiaries": [],
+      "totalCount": 0
+    },
+    {
+      "category": "Within Dukhan",
+      "categoryDisplayName": "Within Dukhan",
+      "beneficiaries": [
+        {
+          "id": 1,
+          "customerId": "123456789",
+          "beneficiaryAccountNo": "9876543210",
+          "beneficiaryName": "John Doe",
+          "beneficiaryType": "WITHIN_DUKHAN",
+          "bankName": "Dukhan Bank",
+          "nickname": "John",
+          "isFavorite": true,
+          "isContactBased": false,
+          "transferTypeTag": "DOMESTIC",
+          "lastTransactionDate": "2024-01-15T10:30:00",
+          "avatarImageUrl": "https://example.com/images/avatar1.jpg"
+        },
+        {
+          "id": 3,
+          "customerId": "123456789",
+          "beneficiaryAccountNo": "9876543212",
+          "beneficiaryName": "Alice Johnson",
+          "beneficiaryType": "WITHIN_DUKHAN",
+          "bankName": "Dukhan Bank",
+          "nickname": "Alice",
+          "isFavorite": false,
+          "isContactBased": false,
+          "transferTypeTag": "DOMESTIC",
+          "lastTransactionDate": "2024-01-13T09:15:00",
+          "avatarImageUrl": "https://example.com/images/avatar3.jpg"
+        }
+      ],
+      "totalCount": 8
+    },
+    {
+      "category": "Within Qatar",
+      "categoryDisplayName": "Within Qatar",
+      "beneficiaries": [
+        {
+          "id": 5,
+          "customerId": "123456789",
+          "beneficiaryAccountNo": "9876543214",
+          "beneficiaryName": "Jane Smith",
+          "beneficiaryType": "WITHIN_QATAR",
+          "bankName": "QNB",
+          "nickname": "Jane",
+          "isFavorite": true,
+          "isContactBased": false,
+          "transferTypeTag": "DOMESTIC",
+          "lastTransactionDate": "2024-01-14T15:20:00",
+          "avatarImageUrl": "https://example.com/images/avatar5.jpg"
+        }
+      ],
+      "totalCount": 3
+    },
+    {
+      "category": "International Transfer",
+      "categoryDisplayName": "International Transfer",
+      "beneficiaries": [
+        {
+          "id": 6,
+          "customerId": "123456789",
+          "beneficiaryAccountNo": "9876543215",
+          "beneficiaryName": "David Lee",
+          "beneficiaryType": "INTERNATIONAL_TRANSFER",
+          "bankName": "HSBC",
+          "nickname": "David",
+          "isFavorite": false,
+          "isContactBased": false,
+          "transferTypeTag": "INTERNATIONAL",
+          "lastTransactionDate": "2024-01-10T16:20:00",
+          "avatarImageUrl": "https://example.com/images/avatar6.jpg"
+        }
+      ],
+      "totalCount": 2
+    },
+    {
+      "category": "Western Union",
+      "categoryDisplayName": "Western Union",
+      "beneficiaries": [],
+      "totalCount": 0
+    },
+    {
+      "category": "Cardless Withdrawal",
+      "categoryDisplayName": "Cardless Withdrawal",
+      "beneficiaries": [],
+      "totalCount": 0
+    },
+    {
+      "category": "Standing Order",
+      "categoryDisplayName": "Standing Order",
+      "beneficiaries": [],
+      "totalCount": 0
+    }
+  ]
+}
+
+

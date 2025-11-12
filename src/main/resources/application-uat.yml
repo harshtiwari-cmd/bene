@@ -1,0 +1,131 @@
+# UAT Profile Configuration
+# This profile is used for UAT (User Acceptance Testing) environment
+
+# Spring Configuration
+spring:
+  application:
+    name: beneficiary-service-uat
+  
+  # Database Configuration - Oracle Database
+  datasource:
+    url: jdbc:oracle:thin:@10.1.126.12:1522:ocidev
+    driver-class-name: oracle.jdbc.OracleDriver
+    username: DBX_BO
+    password: Dbx#bodkb25
+
+  # JPA Configuration for Oracle
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.OracleDialect
+
+  # Database Initialization Configuration for UAT
+  sql:
+    init:
+      mode: always
+      continue-on-error: true
+
+      platform: oracle
+      schema-locations: classpath:sql/oracle/schema.sql
+      data-locations: classpath:sql/oracle/data.sql
+      encoding: UTF-8
+      separator: ";"
+
+
+  # Kafka Configuration - UAT
+  kafka:
+    bootstrap-servers: uat-kafka-server:9092
+    consumer:
+      group-id: uatGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+            value:
+              default:
+                type: com.digi.common.dto.KafkaLogDto
+        security:
+          protocol: SASL_PLAINTEXT
+        sasl:
+          mechanism: PLAIN
+          jaas:
+            config: 'org.apache.kafka.common.security.plain.PlainLoginModule required username="uat_kafka_admin" password="uat_kafka_password";'
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        security:
+          protocol: SASL_PLAINTEXT
+        sasl:
+          mechanism: PLAIN
+          jaas:
+            config: 'org.apache.kafka.common.security.plain.PlainLoginModule required username="uat_kafka_admin" password="uat_kafka_password";'
+    admin:
+      properties:
+        security:
+          protocol: SASL_PLAINTEXT
+        sasl:
+          mechanism: PLAIN
+          jaas:
+            config: 'org.apache.kafka.common.security.plain.PlainLoginModule required username="uat_kafka_admin" password="uat_kafka_password";'
+    listener:
+      missing-topics-fatal: false
+
+# Application Configuration
+app:
+  mockEnabled: false
+  rate:
+    digits: 6
+  security:
+    userId: uat_admin
+    password: uat_admin_123
+ 
+  common-service:
+    url: http://localhost:8082
+    otp-notification-id: "8729"
+    mock-enabled: false
+  testing:
+    bypass-session-token: false
+    otp-static: "111111"
+
+# User Management Configuration - Now managed in database
+# user-management:
+#   auth:
+#     max-failed-login-attempts: 3
+#     lockout-minutes: 30
+
+# Logging Configuration for UAT
+logging:
+  level:
+    com.example.prelogin: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: INFO
+    com.dbx.bo.engine.serviceImpl.OTPMiddlewareServiceImpl: DEBUG
+    org.springframework.web.client.RestTemplate: DEBUG
+    org.apache.http: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Custom Topic Configuration
+kafka:
+  topic:
+    gateway-logs: uat-gateway-log-topic
+
+# OTP Configuration
+otp:
+  validity-minutes: 3
+  length: 6
+  max-regeneration-count: 5
+  max-attempts: 3
+  testing:
+    enabled: false
+    static-value: "111111"
+    description: "Production mode - real OTP"

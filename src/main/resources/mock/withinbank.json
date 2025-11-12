@@ -1,0 +1,48 @@
+{
+  "beneficiaries": [
+    {
+      "id": 1,
+      "customerId": "123456789",
+      "beneficiaryAccountNo": "9876543210",
+      "beneficiaryName": "John Doe",
+      "beneficiaryType": "WITHINBANK",
+      "bankName": "Dukhan Bank",
+      "nickname": "John",
+      "isFavorite": true,
+      "isContactBased": false,
+      "transferTypeTag": "DOMESTIC",
+      "lastTransactionDate": "2024-01-15T10:30:00",
+      "avatarImageUrl": "https://example.com/images/avatar1.jpg"
+    },
+    {
+      "id": 3,
+      "customerId": "123456789",
+      "beneficiaryAccountNo": "9876543212",
+      "beneficiaryName": "Alice Johnson",
+      "beneficiaryType": "WITHINBANK",
+      "bankName": "Dukhan Bank",
+      "nickname": "Alice",
+      "isFavorite": false,
+      "isContactBased": false,
+      "transferTypeTag": "DOMESTIC",
+      "lastTransactionDate": "2024-01-13T09:15:00",
+      "avatarImageUrl": "https://example.com/images/avatar3.jpg"
+    },
+    {
+      "id": 4,
+      "customerId": "123456789",
+      "beneficiaryAccountNo": "9876543213",
+      "beneficiaryName": "Bob Williams",
+      "beneficiaryType": "WITHINBANK",
+      "bankName": "Dukhan Bank",
+      "nickname": "Bob",
+      "isFavorite": false,
+      "isContactBased": false,
+      "transferTypeTag": "DOMESTIC",
+      "lastTransactionDate": "2024-01-12T14:45:00",
+      "avatarImageUrl": "https://example.com/images/avatar4.jpg"
+    }
+  ]
+}
+
+

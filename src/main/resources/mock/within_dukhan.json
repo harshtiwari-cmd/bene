@@ -1,0 +1,41 @@
+{
+  "categories": [
+    {
+      "category": "Within Dukhan",
+      "categoryDisplayName": "Within Dukhan",
+      "beneficiaries": [
+        {
+          "id": 1,
+          "customerId": "123456789",
+          "beneficiaryAccountNo": "9876543210",
+          "beneficiaryName": "John Doe",
+          "beneficiaryType": "WITHIN_DUKHAN",
+          "bankName": "Dukhan Bank",
+          "nickname": "John",
+          "isFavorite": true,
+          "isContactBased": false,
+          "transferTypeTag": "DOMESTIC",
+          "lastTransactionDate": "2024-01-15T10:30:00",
+          "avatarImageUrl": "https://example.com/images/avatar1.jpg"
+        },
+        {
+          "id": 3,
+          "customerId": "123456789",
+          "beneficiaryAccountNo": "9876543212",
+          "beneficiaryName": "Alice Johnson",
+          "beneficiaryType": "WITHIN_DUKHAN",
+          "bankName": "Dukhan Bank",
+          "nickname": "Alice",
+          "isFavorite": false,
+          "isContactBased": false,
+          "transferTypeTag": "DOMESTIC",
+          "lastTransactionDate": "2024-01-13T09:15:00",
+          "avatarImageUrl": "https://example.com/images/avatar3.jpg"
+        }
+      ],
+      "totalCount": 2
+    }
+  ]
+}
+
+

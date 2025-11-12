@@ -1,0 +1,27 @@
+{
+  "categories": [
+    {
+      "category": "Within Qatar",
+      "categoryDisplayName": "Within Qatar",
+      "beneficiaries": [
+        {
+          "id": 5,
+          "customerId": "123456789",
+          "beneficiaryAccountNo": "9876543214",
+          "beneficiaryName": "Jane Smith",
+          "beneficiaryType": "WITHIN_QATAR",
+          "bankName": "QNB",
+          "nickname": "Jane",
+          "isFavorite": true,
+          "isContactBased": false,
+          "transferTypeTag": "DOMESTIC",
+          "lastTransactionDate": "2024-01-14T15:20:00",
+          "avatarImageUrl": "https://example.com/images/avatar5.jpg"
+        }
+      ],
+      "totalCount": 1
+    }
+  ]
+}
+
+

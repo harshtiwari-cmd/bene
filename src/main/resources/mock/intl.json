@@ -1,0 +1,20 @@
+{
+  "beneficiaries": [
+    {
+      "id": 6,
+      "customerId": "123456789",
+      "beneficiaryAccountNo": "9876543215",
+      "beneficiaryName": "David Lee",
+      "beneficiaryType": "INTL",
+      "bankName": "HSBC",
+      "nickname": "David",
+      "isFavorite": false,
+      "isContactBased": false,
+      "transferTypeTag": "INTERNATIONAL",
+      "lastTransactionDate": "2024-01-10T16:20:00",
+      "avatarImageUrl": "https://example.com/images/avatar6.jpg"
+    }
+  ]
+}
+
+
