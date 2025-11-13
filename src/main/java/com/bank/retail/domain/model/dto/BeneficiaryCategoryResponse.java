@@ -14,7 +14,6 @@ import java.util.List;
 public class BeneficiaryCategoryResponse {
     
     private String category;
-    private String categoryDisplayName;
     private List<BeneficiaryDto> beneficiaries;
     private Integer totalCount;
 }

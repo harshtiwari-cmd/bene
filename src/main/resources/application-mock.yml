@@ -1,7 +1,6 @@
 # Mock Profile Configuration
 # This profile is used for Mock/Testing environment
-mock:
-  enabled: true
+
 spring:
   application:
     name: beneficiary-service-mock
@@ -59,6 +58,8 @@ app:
     otp-notification-id: "8729"
     mock-enabled: true
 
+beneficiary:
+  cooling-time-minutes: 30
 # OTP Configuration
 # otp:
 #   validity-minutes: 10

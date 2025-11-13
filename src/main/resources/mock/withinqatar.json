@@ -11,9 +11,12 @@
       "isFavorite": true,
       "isContactBased": false,
       "transferTypeTag": "DOMESTIC",
-      "lastTransactionDate": "2024-01-14T15:20:00",
       "iban": "QA50QNBA000000000066657858005",
-      "avatarImageUrl": "https://example.com/images/avatar5.jpg"
+      "avatarImageUrl": "https://example.com/images/avatar5.jpg",
+      "createdDate": "2025-11-02 14:00:00",
+      "updatedDate": "2025-11-12 14:30:00",
+      "coolingTimeLeft": "0 min left",
+      "status": "Active"
     }
   ]
 }

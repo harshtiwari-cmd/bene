@@ -52,7 +52,6 @@ public class BeneficiaryServiceMockImpl implements BeneficiaryService {
                     wrapped.setCategories(java.util.Collections.singletonList(
                            BeneficiaryCategoryResponse.builder()
                                     .category(display)
-                                    .categoryDisplayName(display)
                                     .build()
                     ));
                     data = wrapped;

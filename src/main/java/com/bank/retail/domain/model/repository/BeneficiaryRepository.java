@@ -28,7 +28,7 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
            "  WHEN 'STANDING_ORDER' THEN 6 " +
            "  ELSE 5 " +
            "END, " +
-           "b.lastTransactionDate DESC NULLS LAST, " +
+           "b.updatedAt DESC NULLS LAST, " +
            "b.beneficiaryName ASC")
     List<Beneficiary> findActiveBeneficiariesByCustomerId(@Param("customerId") String customerId);
     
@@ -38,7 +38,7 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
            "AND (b.deleted IS NULL OR b.deleted = false) " +
            "AND b.beneficiaryStatus = 'A' " +
            "ORDER BY b.isFavorite DESC NULLS LAST, " +
-           "b.lastTransactionDate DESC NULLS LAST, " +
+           "b.updatedAt DESC NULLS LAST, " +
            "b.beneficiaryName ASC")
     Page<Beneficiary> findActiveBeneficiariesByCustomerIdAndType(
             @Param("customerId") String customerId,
@@ -50,7 +50,7 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
            "AND b.isFavorite = true " +
            "AND (b.deleted IS NULL OR b.deleted = false) " +
            "AND b.beneficiaryStatus = 'A' " +
-           "ORDER BY b.lastTransactionDate DESC NULLS LAST, " +
+           "ORDER BY b.updatedAt DESC NULLS LAST, " +
            "b.beneficiaryName ASC")
     Page<Beneficiary> findFavoriteBeneficiariesByCustomerId(
             @Param("customerId") String customerId,
@@ -75,7 +75,7 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
            "  WHEN 'STANDING_ORDER' THEN 6 " +
            "  ELSE 7 " +
            "END, " +
-           "b.lastTransactionDate DESC NULLS LAST, " +
+           "b.updatedAt DESC NULLS LAST, " +
            "b.beneficiaryName ASC")
     Page<Beneficiary> searchActiveBeneficiaries(
             @Param("customerId") String customerId,
@@ -92,7 +92,7 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
            "OR LOWER(b.beneficiaryAccountNo) LIKE LOWER(CONCAT('%', :search, '%')) " +
            "OR LOWER(b.bankName) LIKE LOWER(CONCAT('%', :search, '%'))) " +
            "ORDER BY b.isFavorite DESC NULLS LAST, " +
-           "b.lastTransactionDate DESC NULLS LAST, " +
+           "b.updatedAt DESC NULLS LAST, " +
            "b.beneficiaryName ASC")
     Page<Beneficiary> searchActiveBeneficiariesByType(
             @Param("customerId") String customerId,

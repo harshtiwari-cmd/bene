@@ -10,10 +10,14 @@ import com.bank.retail.infrastructure.persistence.Beneficiary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import java.text.Normalizer;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,9 +30,14 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
     
     private static final Logger logger = LoggerFactory.getLogger(BeneficiaryServiceImpl.class);
     
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    
     @Autowired
     private BeneficiaryRepository beneficiaryRepository;
-    
+
+    @Value("${beneficiary.cooling-time-minutes}")
+    private int configuredCoolingTime;
+
     @Override
     public GenericResponse viewBeneficiaries(
             String unit, String channel, String lang, String serviceId,
@@ -147,7 +156,6 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
         List<BeneficiaryCategoryResponse> categories = new ArrayList<>();
         categories.add(BeneficiaryCategoryResponse.builder()
                 .category(typeDisplayName)
-                .categoryDisplayName(typeDisplayName)
                 .beneficiaries(beneficiaryDtos)
                 .totalCount(beneficiaries.size())
                 .build());
@@ -174,7 +182,6 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
         
         categories.add(BeneficiaryCategoryResponse.builder()
                 .category(category)
-                .categoryDisplayName(displayName)
                 .beneficiaries(dtos)
                 .totalCount(beneficiaries.size())
                 .build());
@@ -182,6 +189,48 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
     
 
     private BeneficiaryDto mapToDto(Beneficiary beneficiary) {
+        LocalDateTime now = LocalDateTime.now();
+        
+        String createdDate = beneficiary.getCreatedAt() != null
+                ? beneficiary.getCreatedAt().format(DATE_TIME_FORMATTER) 
+                : "";
+        String updatedDate = beneficiary.getUpdatedAt() != null 
+                ? beneficiary.getUpdatedAt().format(DATE_TIME_FORMATTER) 
+                : "";
+        
+        String coolingTimeLeft;
+        String status;
+        
+        if (beneficiary.getUpdatedAt() != null) {
+            LocalDateTime updatedAt = beneficiary.getUpdatedAt();
+            Duration duration = Duration.between(updatedAt, now);
+            long minutesPassed = duration.toMinutes();
+            
+            logger.info("Cooling time calculation - Beneficiary ID: {}, updatedAt: {} (formatted: {}), now: {} (formatted: {}), minutesPassed: {}, configuredCoolingTime: {}",
+                    beneficiary.getId(), updatedAt, updatedDate, now, now.format(DATE_TIME_FORMATTER), minutesPassed, configuredCoolingTime);
+            
+            if (minutesPassed < 0) {
+                logger.warn("Negative duration detected - updatedAt is in the future. Beneficiary ID: {}, updatedAt: {}, now: {}", 
+                        beneficiary.getId(), updatedAt, now);
+                coolingTimeLeft = "0 min left";
+                status = "Active";
+            } else if (minutesPassed < configuredCoolingTime) {
+                long remainingMinutes = configuredCoolingTime - minutesPassed;
+                coolingTimeLeft = remainingMinutes + " min left";
+                status = "Inactive";
+                logger.debug("Beneficiary ID: {} is INACTIVE - {} minutes remaining in cooling period", beneficiary.getId(), remainingMinutes);
+            } else {
+                coolingTimeLeft = "0 min left";
+                status = "Active";
+                logger.info("Beneficiary ID: {} is ACTIVE - cooling period has passed ({} minutes > {} minutes)",
+                        beneficiary.getId(), minutesPassed, configuredCoolingTime);
+            }
+        } else {
+            logger.warn("Beneficiary ID: {} has null updatedAt - treating as Active", beneficiary.getId());
+            coolingTimeLeft = "0 min left";
+            status = "Active";
+        }
+        
         return BeneficiaryDto.builder()
                 .id(beneficiary.getId())
                 .customerId(beneficiary.getCustomerId())
@@ -193,8 +242,11 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
                 .isFavorite(beneficiary.getIsFavorite())
                 .isContactBased(beneficiary.getIsContactBased())
                 .transferTypeTag(beneficiary.getTransferTypeTag())
-                .lastTransactionDate(beneficiary.getLastTransactionDate())
                 .avatarImageUrl(beneficiary.getAvatarImageUrl())
+                .createdDate(createdDate)
+                .updatedDate(updatedDate)
+                .coolingTimeLeft(coolingTimeLeft)
+                .status(status)
                 .build();
     }
     

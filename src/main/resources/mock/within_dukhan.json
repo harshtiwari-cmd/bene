@@ -15,8 +15,11 @@
           "isFavorite": true,
           "isContactBased": false,
           "transferTypeTag": "DOMESTIC",
-          "lastTransactionDate": "2024-01-15T10:30:00",
-          "avatarImageUrl": "https://example.com/images/avatar1.jpg"
+          "avatarImageUrl": "https://example.com/images/avatar1.jpg",
+          "createdDate": "2025-11-01 10:00:00",
+          "updatedDate": "2025-11-12 13:00:00",
+          "coolingTimeLeft": "0 min left",
+          "status": "Active"
         },
         {
           "id": 3,
@@ -29,8 +32,11 @@
           "isFavorite": false,
           "isContactBased": false,
           "transferTypeTag": "DOMESTIC",
-          "lastTransactionDate": "2024-01-13T09:15:00",
-          "avatarImageUrl": "https://example.com/images/avatar3.jpg"
+          "avatarImageUrl": "https://example.com/images/avatar3.jpg",
+          "createdDate": "2025-11-05 09:00:00",
+          "updatedDate": "2025-11-12 16:50:00",
+          "coolingTimeLeft": "15 min left",
+          "status": "Inactive"
         }
       ],
       "totalCount": 2
