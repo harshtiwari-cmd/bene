@@ -1,6 +1,10 @@
 server:
   port: 6062
 
+bank:
+  middleware:
+    url: http://localhost:8080
+
 spring:
   application:
     name: beneficiary-service
