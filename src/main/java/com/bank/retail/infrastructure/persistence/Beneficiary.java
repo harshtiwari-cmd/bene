@@ -66,8 +66,9 @@ public class Beneficiary {
     @Column(name = "activation_ref_no")
     private String activationRefNo;
 
+    @Lob
     @Column(name = "avatar_image_url")
-    private String avatarImageUrl;
+    private byte[] avatarImageUrl;
 
     @Column(name = "mobile_number")
     private String mobileNumber;

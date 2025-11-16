@@ -12,10 +12,15 @@ import java.util.List;
 
 @Repository
 public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> {
-    
+
+    boolean existsByCustomerId(String customerId);
+
+    boolean existsByCustomerIdAndBeneficiaryAccountNo(String customerId, String beneficiaryAccountNo);
+
+    boolean existsByCustomerIdAndNickname(String customerId, String nickName);
 
     @Query("SELECT b FROM Beneficiary b WHERE b.customerId = :customerId " +
-           "AND (b.deleted IS NULL OR b.deleted = false) " +
+           "AND (b.deleted IS NULL OR b.deleted = 0) " +
            "AND b.beneficiaryStatus = 'A' " +
            "ORDER BY b.isFavorite DESC NULLS LAST, " +
            "CASE b.beneficiaryType " +
@@ -35,7 +40,7 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
 
     @Query("SELECT b FROM Beneficiary b WHERE b.customerId = :customerId " +
            "AND b.beneficiaryType = :type " +
-           "AND (b.deleted IS NULL OR b.deleted = false) " +
+           "AND (b.deleted IS NULL OR b.deleted = 0) " +
            "AND b.beneficiaryStatus = 'A' " +
            "ORDER BY b.isFavorite DESC NULLS LAST, " +
            "b.updatedAt DESC NULLS LAST, " +
@@ -48,7 +53,7 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
 
     @Query("SELECT b FROM Beneficiary b WHERE b.customerId = :customerId " +
            "AND b.isFavorite = true " +
-           "AND (b.deleted IS NULL OR b.deleted = false) " +
+           "AND (b.deleted IS NULL OR b.deleted = 0) " +
            "AND b.beneficiaryStatus = 'A' " +
            "ORDER BY b.updatedAt DESC NULLS LAST, " +
            "b.beneficiaryName ASC")
@@ -58,7 +63,7 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
     
 
     @Query("SELECT b FROM Beneficiary b WHERE b.customerId = :customerId " +
-           "AND (b.deleted IS NULL OR b.deleted = false) " +
+           "AND (b.deleted IS NULL OR b.deleted = 0) " +
            "AND b.beneficiaryStatus = 'A' " +
            "AND (LOWER(b.beneficiaryName) LIKE LOWER(CONCAT('%', :search, '%')) " +
            "OR LOWER(b.nickname) LIKE LOWER(CONCAT('%', :search, '%')) " +
@@ -85,7 +90,7 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
 
     @Query("SELECT b FROM Beneficiary b WHERE b.customerId = :customerId " +
            "AND b.beneficiaryType = :type " +
-           "AND (b.deleted IS NULL OR b.deleted = false) " +
+           "AND (b.deleted IS NULL OR b.deleted = 0) " +
            "AND b.beneficiaryStatus = 'A' " +
            "AND (LOWER(b.beneficiaryName) LIKE LOWER(CONCAT('%', :search, '%')) " +
            "OR LOWER(b.nickname) LIKE LOWER(CONCAT('%', :search, '%')) " +
@@ -103,7 +108,7 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
 
     @Query("SELECT COUNT(b) FROM Beneficiary b WHERE b.customerId = :customerId " +
            "AND b.beneficiaryType = :type " +
-           "AND (b.deleted IS NULL OR b.deleted = false) " +
+           "AND (b.deleted IS NULL OR b.deleted = 0) " +
            "AND b.beneficiaryStatus = 'A'")
     Long countActiveBeneficiariesByCustomerIdAndType(
             @Param("customerId") String customerId,
@@ -112,7 +117,7 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
 
     @Query("SELECT COUNT(b) FROM Beneficiary b WHERE b.customerId = :customerId " +
            "AND b.isFavorite = true " +
-           "AND (b.deleted IS NULL OR b.deleted = false) " +
+           "AND (b.deleted IS NULL OR b.deleted = 0) " +
            "AND b.beneficiaryStatus = 'A'")
     Long countFavoriteBeneficiariesByCustomerId(@Param("customerId") String customerId);
 }
