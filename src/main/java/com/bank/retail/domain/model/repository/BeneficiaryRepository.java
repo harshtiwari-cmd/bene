@@ -9,9 +9,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> {
+
+    boolean existsByNickname(String nickname);
+
+    Optional<Beneficiary> findByBeneficiaryAccountNo(String nickname);
 
     boolean existsByCustomerId(String customerId);
 

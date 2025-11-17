@@ -1,0 +1,30 @@
+{
+  "status": "SUCCESS",
+  "message": "Beneficiary inquiry processed successfully",
+  "timestamp": "2025-11-17T00:00:00",
+  "bankResponse": {
+    "referenceNum": "IIB20180909124226000",
+    "referenceNumConsumer": null,
+    "referenceNumProvider": null,
+    "requestTime": "20180909124226",
+    "returnStatus": {
+      "returnCode": "0000",
+      "returnCodeDesc": "Success"
+    },
+    "returnStatusProvider": null,
+    "customerNumber": null,
+    "correlationId": null,
+    "beneAccNo": "200000321699",
+    "beneName": "Faramawy",
+    "beneType": "WITHINBANK",
+    "custNo": "73000",
+    "beneBankName": "Barwa",
+    "beneBankAdd1": "hamad st",
+    "beneBankCountry": "QA",
+    "beneBankCity": "Doha",
+    "beneficiaryBankBIC": "BRWAQAQAXXX",
+    "nickName": "Faramawy",
+    "imageLinkUrl": "https://oci.barwabank.com//uploads/public/BO/BO/CARD/20180713133901605.jpeg"
+  },
+  "errors": null
+}

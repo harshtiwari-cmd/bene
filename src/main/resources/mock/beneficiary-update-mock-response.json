@@ -1,0 +1,30 @@
+{
+  "status": null,
+  "message": null,
+  "timestamp": null,
+  "bankResponse": {
+    "referenceNum": "MW310202101",
+    "referenceNumConsumer": null,
+    "referenceNumProvider": null,
+    "requestTime": "20151007091422",
+    "returnStatus": {
+      "returnCode": "0000",
+      "returnCodeDesc": "Success"
+    },
+    "returnStatusProvider": null,
+    "customerNumber": null,
+    "correlationId": null,
+    "beneAccNo": null,
+    "beneName": null,
+    "beneType": null,
+    "custNo": null,
+    "beneBankName": null,
+    "beneBankAdd1": null,
+    "beneBankCountry": null,
+    "beneBankCity": null,
+    "beneficiaryBankBIC": null,
+    "nickName": null,
+    "imageLinkUrl": null
+  },
+  "errors": null
+}
