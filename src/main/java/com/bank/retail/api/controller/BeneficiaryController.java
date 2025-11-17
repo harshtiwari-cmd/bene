@@ -1,13 +1,11 @@
 package com.bank.retail.api.controller;
 
 
-import com.bank.retail.domain.model.dto.GenericResponse;
+import com.bank.retail.domain.model.dto.*;
 import com.bank.retail.api.service.BeneficiaryService;
-import com.bank.retail.domain.model.dto.BeneficiaryViewRequest;
-import com.bank.retail.domain.model.dto.BeneficiaryViewWrapper;
-import com.bank.retail.domain.model.dto.DeviceInfo;
 import com.bank.retail.infrastructure.common.AppConstant;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @Validated
 @RequestMapping("/api/v1/beneficiaries")

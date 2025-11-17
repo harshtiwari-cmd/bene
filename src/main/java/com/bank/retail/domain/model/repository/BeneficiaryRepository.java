@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> {
@@ -115,5 +116,9 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
            "AND (b.deleted IS NULL OR b.deleted = false) " +
            "AND b.beneficiaryStatus = 'A'")
     Long countFavoriteBeneficiariesByCustomerId(@Param("customerId") String customerId);
+
+
+    @Query("SELECT b FROM Beneficiary b WHERE b.beneficiaryAccountNo = :accountNumber AND b.deleted = FALSE")
+    Optional<Beneficiary> findByBeneficiaryAccountNo(String accountNumber);
 }
 
