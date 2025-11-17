@@ -23,7 +23,7 @@ public class BeneficiaryDto {
     private Boolean isFavorite;
     private Boolean isContactBased;
     private String transferTypeTag;
-    private byte[] avatarImageUrl;
+    private String avatarImageUrl;
     private String createdDate;
     private String updatedDate;
     private String coolingTimeLeft;

@@ -2,19 +2,25 @@ package com.bank.retail.api.controller;
 
 
 import com.bank.retail.api.service.BeneficiaryCreationService;
+import com.bank.retail.api.service.BeneficiaryUpdateService;
 import com.bank.retail.api.service.BeneficiaryVerificationService;
 import com.bank.retail.domain.model.dto.*;
 import com.bank.retail.api.service.BeneficiaryService;
+import com.bank.retail.domain.model.repository.BeneficiaryImagesRepository;
 import com.bank.retail.infrastructure.common.AppConstant;
+import com.bank.retail.infrastructure.persistence.BeneficiaryImages;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Optional;
 
 @RestController
 @Validated
@@ -31,6 +37,12 @@ public class BeneficiaryController {
 
     @Autowired
     private BeneficiaryCreationService beneficiaryCreationService;
+
+    @Autowired
+    private BeneficiaryUpdateService beneficiaryUpdateService;
+
+    @Autowired
+    private BeneficiaryImagesRepository imagesRepository;
 
     @PostMapping("/view")
     public ResponseEntity<GenericResponse> viewBeneficiaries(
@@ -148,6 +160,39 @@ public class BeneficiaryController {
             return ResponseEntity.ok(GenericResponse.error(AppConstant.GEN_ERROR_CODE, AppConstant.GEN_ERROR_DESC));
         }
     }
+
+
+
+    @PostMapping(value = "/update")
+    public ResponseEntity<GenericResponse> updateBeneficiary(
+            @RequestHeader(name = AppConstant.HEADER_UNIT) String unit,
+            @RequestHeader(name = AppConstant.HEADER_CHANNEL) String channel,
+            @RequestHeader(name = AppConstant.HEADER_ACCEPT_LANGUAGE, required = false) String lang,
+            @RequestHeader(name = AppConstant.SERVICEID) String serviceId,
+            @RequestHeader(name = AppConstant.SCREEN_ID) String screenId,
+            @RequestHeader(name = AppConstant.MODULE_ID) String moduleId,
+            @RequestHeader(name = AppConstant.SUB_MODULE_ID) String subModuleId,
+            @Valid @RequestBody BeneficiaryUpdateWrapper request
+    ) {
+
+        UpdateBeneficiaryRequest requestInfo = request.getRequestInfo();
+        DeviceInfo deviceInfo = request.getDeviceInfo();
+
+        GenericResponse<UpdateBeneficiaryResponse> updated = beneficiaryUpdateService.updateBeneficiary(
+                unit, channel, lang, serviceId, screenId, moduleId, subModuleId,
+                requestInfo, deviceInfo
+        );
+
+        return ResponseEntity.ok(updated);
+    }
+
+    @GetMapping("/avatarImage/{id}")
+    public ResponseEntity<String> getImageUrl(@PathVariable String id) {
+        return imagesRepository.findByBeneficiaryAccNo(id)
+                .map(image -> ResponseEntity.ok(image.getAvatarImage()))
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Id"));
+    }
+
 
 }
 

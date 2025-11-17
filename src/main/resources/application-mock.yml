@@ -1,6 +1,9 @@
 # Mock Profile Configuration
 # This profile is used for Mock/Testing environment
 
+avatarImage:
+  url: "http://localhost:6063/api/v1/beneficiaries/avatarImage/"
+
 spring:
   application:
     name: beneficiary-service-mock

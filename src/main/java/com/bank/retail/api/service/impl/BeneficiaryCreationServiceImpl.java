@@ -90,7 +90,7 @@ public class BeneficiaryCreationServiceImpl implements BeneficiaryCreationServic
                     .bankCountry(request.getBeneBankCountry())
                     .bankBic(request.getBeneficiaryBankBIC())
                     .nickname(request.getNickName())
-                    .avatarImageUrl(imageBytes)
+//                    .avatarImageUrl(imageBytes)
                     .beneficiaryAccountType(request.getBeneAccCurr())
                     .build();
 
