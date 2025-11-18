@@ -1,5 +1,6 @@
 package com.bank.retail.infrastructure.persistence;
 
+import com.bank.retail.infrastructure.persistence.converter.BooleanToIntegerConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -72,15 +73,18 @@ public class Beneficiary {
     private String mobileNumber;
 
     @Column(name = "is_favorite")
+    @Convert(converter = BooleanToIntegerConverter.class)
     private Boolean isFavorite;
 
     @Column(name = "is_contact_based")
+    @Convert(converter = BooleanToIntegerConverter.class)
     private Boolean isContactBased;
 
     @Column(name = "transfer_type_tag")
     private String transferTypeTag;
 
     @Column(name = "deleted")
+    @Convert(converter = BooleanToIntegerConverter.class)
     private Boolean deleted;
 
     @CreatedDate

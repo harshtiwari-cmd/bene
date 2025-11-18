@@ -33,6 +33,20 @@ public class BankMiddlewareResponse {
         private ReturnStatusProvider returnStatusProvider;
         private String customerNumber;
         private String correlationId;
+
+        private String beneAccNo;
+        private String beneName;
+        private String beneType;
+        private String custNo;
+        private String beneBankName;
+        private String beneBankAdd1;
+        private String beneBankCountry;
+        private String beneBankCity;
+        private String beneficiaryBankBIC;
+        private String nickName;
+        private String imageLinkUrl;
+
+
     }
 
     @Data
