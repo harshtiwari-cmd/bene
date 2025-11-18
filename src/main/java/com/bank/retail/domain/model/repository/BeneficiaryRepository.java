@@ -125,5 +125,9 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
            "AND (b.deleted IS NULL OR b.deleted = 0) " +
            "AND b.beneficiaryStatus = 'A'")
     Long countFavoriteBeneficiariesByCustomerId(@Param("customerId") String customerId);
+
+
+    @Query("SELECT b FROM Beneficiary b WHERE b.beneficiaryAccountNo = :accountNumber AND b.deleted = FALSE")
+    Optional<Beneficiary> findByBeneficiaryAccountNo(String accountNumber);
 }
 

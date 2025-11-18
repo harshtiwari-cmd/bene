@@ -1,0 +1,28 @@
+{
+  "bankResponse": {
+    "returnStatus": {
+      "returnCode": "0000",
+      "returnDescription": "Success"
+    },
+    "beneficiary": {
+      "beneAccNo": "300000400003",
+      "beneBankBranch": "QNBAQAQAXXX",
+      "beneAccType": "MSS",
+      "beneName": "Faramawy",
+      "beneType": "WITHINBANK",
+      "beneAdd1": "Doha",
+      "custNo": "73000",
+      "beneBankName": "Barwa",
+      "beneBankAdd1": "hamad st",
+      "beneBankCountry": "QA",
+      "beneBankCity": "Doha",
+      "bankCountryCode": "QA",
+      "beneStatus": "I",
+      "beneficiaryBankBIC": "BRWAQAQAXXX",
+      "nickName": "Faramawy",
+      "activationRefNo": "0",
+      "beneImageLink": "https://oci.barwabank.com/uploads/sample.jpeg",
+      "beneMobileNum": "123456789"
+    }
+  }
+}

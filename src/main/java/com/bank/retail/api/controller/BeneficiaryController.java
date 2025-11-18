@@ -1,6 +1,9 @@
 package com.bank.retail.api.controller;
 
 
+
+import com.bank.retail.domain.model.dto.*;
+import com.bank.retail.api.service.BeneficiaryService;
 import com.bank.retail.api.service.BeneficiaryCreationService;
 import com.bank.retail.api.service.BeneficiaryUpdateService;
 import com.bank.retail.api.service.BeneficiaryVerificationService;
@@ -10,6 +13,7 @@ import com.bank.retail.domain.model.repository.BeneficiaryImagesRepository;
 import com.bank.retail.infrastructure.common.AppConstant;
 import com.bank.retail.infrastructure.persistence.BeneficiaryImages;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @Validated
 @RequestMapping("/api/v1/beneficiaries")
